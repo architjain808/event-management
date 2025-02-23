@@ -1,0 +1,115 @@
+<div class="login-card p-2">
+  <h2 class="text-center">ADD Event</h2>
+  <form [formGroup]="addEventForm" class="row mb-2">
+    <mat-form-field class="col-12">
+      <mat-label>Title</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="title"
+        placeholder="Ex. Music Concert"
+      />
+
+      <mat-error *ngIf="addEventForm.get('Title')?.hasError('required')">
+        Title is required
+      </mat-error>
+      <mat-error *ngIf="addEventForm.get('Title')?.hasError('pattern')">
+        Title is invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Description</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="description"
+        placeholder="Ex. Music Concert"
+      />
+
+      <mat-error *ngIf="addEventForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+      <mat-error *ngIf="addEventForm.get('description')?.hasError('pattern')">
+        Description is invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Location</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="location"
+        placeholder="Location"
+      />
+
+      <mat-error *ngIf="addEventForm.get('location')?.hasError('required')">
+        Location is required
+      </mat-error>
+      <mat-error *ngIf="addEventForm.get('location')?.hasError('pattern')">
+        Location is invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Price</mat-label>
+      <input
+        type="number"
+        matInput
+        formControlName="price"
+        placeholder="Price in USD"
+      />
+
+      <mat-error *ngIf="addEventForm.get('price')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="addEventForm.get('price')?.hasError('pattern')">
+        Price is invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Available Seats</mat-label>
+      <input
+        type="number"
+        matInput
+        formControlName="availableSeats"
+        placeholder="Ex. 100"
+      />
+
+      <mat-error
+        *ngIf="addEventForm.get('availableSeats')?.hasError('required')"
+      >
+        Available Seats is required
+      </mat-error>
+      <mat-error
+        *ngIf="addEventForm.get('availableSeats')?.hasError('pattern')"
+      >
+        Available Seats is invalid
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <section class="d-flex justify-content-center">
+    <button
+      [disabled]="!addEventForm.valid"
+      mat-flat-button
+      (click)="onAddEventRequest()"
+      mat-button
+      color="primary"
+    >
+      Add Event
+    </button>
+  </section>
+</div>

@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <!-- Search & Filter Section -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Search Events</mat-label>
+        <input
+          matInput
+          placeholder="Search by Name or Description"
+          [(ngModel)]="searchQuery"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Filter by Price</mat-label>
+        <mat-select [(ngModel)]="selectedPrice">
+          <mat-option *ngFor="let price of priceOptions" [value]="price">{{
+            price
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Event Cards -->
+  <div class="row">
+    <div
+      class="col-md-6 mb-4"
+      *ngFor="let event of filteredEvents(); let i = index"
+    >
+      <mat-card class="event-card">
+        <mat-card-header>
+          <mat-card-title>{{ event.title }}</mat-card-title>
+          <mat-card-subtitle>{{ event.location }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ event.description }}</p>
+          <p><strong>Date:</strong> {{ event.date }}</p>
+          <p><strong>Price:</strong> ${{ event.price }}</p>
+          <p><strong>Available Seats:</strong> {{ event.availableSeats }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            *ngIf="!isAdmin"
+            mat-raised-button
+            color="primary"
+            class="full-width"
+            (click)="bookEvent(event)"
+          >
+            Book Now
+          </button>
+          <button
+            *ngIf="isAdmin"
+            mat-raised-button
+            color="warn"
+            class="full-width"
+            (click)="deleteEvent(event)"
+          >
+            Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

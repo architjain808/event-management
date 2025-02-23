@@ -1,0 +1,25 @@
+.success-card {
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.success-icon {
+  font-size: 80px;
+  color: green;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+mat-card-content p {
+  font-size: 16px;
+}
+
+mat-card-actions {
+  margin-top: 20px;
+}

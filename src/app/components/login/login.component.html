@@ -1,0 +1,50 @@
+<div class="login-card p-2">
+  <h2 class="text-center">Login</h2>
+  <form [formGroup]="loginForm" class="row mb-2" (ngSubmit)="onLoginRequest()">
+    <mat-form-field class="col-12">
+      <mat-label>UserName</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="username"
+        placeholder="admin OR user"
+      />
+
+      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+        UserName is required
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('username')?.hasError('pattern')">
+        UserName is invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <mat-label>PassWord</mat-label>
+      <input
+        [type]="passwordVisible ? 'text' : 'password'"
+        matInput
+        formControlName="password"
+        placeholder="admin123 OR user123"
+      />
+      <mat-icon (click)="passwordVisible = !passwordVisible" matSuffix>{{
+        passwordVisible ? "visibility" : "visibility_off"
+      }}</mat-icon>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('pattern')">
+        Password is invalid
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <section class="d-flex justify-content-center">
+    <button
+      [disabled]="!loginForm.valid"
+      (click)="onLoginRequest()"
+      mat-flat-button
+      mat-button
+      color="primary"
+    >
+      login
+    </button>
+  </section>
+</div>
