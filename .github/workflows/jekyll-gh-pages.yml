@@ -31,12 +31,12 @@ jobs:
         run: npm install
 
       - name: Build Angular project
-        run: npm run build -- --base-href /prisoner-dilemma/ # Replace <repository-name> with your repository name
+        run: npm run build -- --base-href /event-management/ # Replace <repository-name> with your repository name
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/prisoner-dilemma # Replace <project-name> with your Angular project name
+          path: ./dist/event-management # Replace <project-name> with your Angular project name
 
   deploy:
     environment:
